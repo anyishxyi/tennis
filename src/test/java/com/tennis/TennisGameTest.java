@@ -32,4 +32,14 @@ public class TennisGameTest {
     game.pointWonBy('A');
     assertEquals("Player A : 40 / Player B : 0", game.getScore());
   }
+
+  @Test
+  void playerA_wins_game() {
+    TennisGame game = new TennisGame();
+    game.pointWonBy('A');
+    game.pointWonBy('A');
+    game.pointWonBy('A');
+    game.pointWonBy('A');
+    assertEquals("Player A wins the game", game.getScore());
+  }
 }
