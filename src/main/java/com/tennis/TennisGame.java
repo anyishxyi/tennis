@@ -1,5 +1,7 @@
 package com.tennis;
 
+import java.util.Scanner;
+
 public class TennisGame {
   private int playerAScore = 0;
   private int playerBScore = 0;
@@ -7,6 +9,42 @@ public class TennisGame {
   private String winner = "";
 
   private static final int[] SCORE_TABLE = {0, 15, 30, 40};
+
+  /**
+   * Entry point of the application.
+   * Accepts a sequence of points won by players (e.g., "ABABAA") as a command-line argument
+   * or via user input, then plays the game and prints the score after each point.
+   *
+   * @param args Optional argument representing the sequence of points.
+   */
+  public static void main(String[] args) {
+    String input = "";
+
+    if (args.length > 0) {
+      input = args[0].toUpperCase();
+    } else {
+      Scanner scanner = new Scanner(System.in);
+      System.out.print("Enter the sequence of points (e.g. ABABAA): ");
+      input = scanner.nextLine().trim().toUpperCase();
+      scanner.close();
+    }
+
+    playGame(input);
+  }
+
+  /**
+   * Plays a tennis game from a given input string.
+   * Prints the score after each point.
+   *
+   * @param input A string like "ABABAA", where 'A' and 'B' represent the players scoring.
+   */
+  public static void playGame(String input) {
+    TennisGame game = new TennisGame();
+    for (char c : input.toCharArray()) {
+      game.pointWonBy(c);
+      System.out.println(game.getScore());
+    }
+  }
 
   /**
    * Returns the current score of the game or the winner of the game.
