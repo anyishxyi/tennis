@@ -13,6 +13,9 @@
 # Intellij folder
 .idea
 
+# mvn folder
+target
+
 # Package Files #
 *.jar
 *.war
