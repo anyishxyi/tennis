@@ -4,7 +4,7 @@ public class TennisGame {
   private int playerAScore = 0;
   private int playerBScore = 0;
   private boolean gameEnded = false;
-  private String winner;
+  private String winner = "";
 
   private static final int[] SCORE_TABLE = {0, 15, 30, 40};
 
@@ -14,11 +14,17 @@ public class TennisGame {
   public String getScore() {
     if (gameEnded) return winner + " wins the game";
 
-    if (playerAScore >= 3 && playerBScore >= 3 && playerAScore == playerBScore) {
-      return "Deuce";
+    if (playerAScore >= 3 && playerBScore >= 3) {
+      if (playerAScore == playerBScore) return "Deuce";
+      else if ((playerAScore - playerBScore) == 1) {
+        return "Advantage " + ((playerAScore > playerBScore) ? "Player A" : "Player B");
+      }
     }
 
-    return "Player A : " + SCORE_TABLE[playerAScore] + " / Player B : " + SCORE_TABLE[playerBScore];
+    int scoreA = playerAScore >= 4 ? 40 : SCORE_TABLE[playerAScore];
+    int scoreB = playerBScore >= 4 ? 40 : SCORE_TABLE[playerBScore];
+
+    return "Player A : " + scoreA + " / Player B : " + scoreB;
   }
 
   /**
@@ -34,12 +40,20 @@ public class TennisGame {
       playerBScore++;
     }
 
-    if (playerAScore >= 4 && playerAScore - playerBScore >= 2) {
+    if (hasWinner()) {
       gameEnded = true;
-      winner = "Player A";
-    } else if (playerBScore >= 4 && playerBScore - playerAScore >= 2) {
-      gameEnded = true;
-      winner = "Player B";
+      winner = (playerAScore > playerBScore) ? "Player A" : "Player B";
     }
+  }
+
+  /**
+   * Returns true if the game has been won by one player.
+   * A player must have at least 4 points and lead by 2.
+   */
+  private boolean hasWinner() {
+    if (playerAScore >= 4 || playerBScore >= 4) {
+      return (playerAScore - playerBScore) >= 2;
+    }
+    return false;
   }
 }

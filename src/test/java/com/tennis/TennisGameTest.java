@@ -56,4 +56,20 @@ public class TennisGameTest {
 
     assertEquals("Deuce", game.getScore());
   }
+
+  @Test
+  void playerA_has_advantage() {
+    TennisGame game = new TennisGame();
+    game.pointWonBy('A');
+    game.pointWonBy('A');
+    game.pointWonBy('A');
+
+    game.pointWonBy('B');
+    game.pointWonBy('B');
+    game.pointWonBy('B');
+
+    game.pointWonBy('A'); // Advantage A after deuce
+
+    assertEquals("Advantage Player A", game.getScore());
+  }
 }
