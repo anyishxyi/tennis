@@ -29,20 +29,25 @@ public class TennisGame {
       scanner.close();
     }
 
-    playGame(input);
+    TennisGame game = new TennisGame();
+    playGame(game, input, true);
   }
 
   /**
    * Plays a tennis game from a given input string.
-   * Prints the score after each point.
+   * Updates the game state according to the input.
+   * If verbose is true, prints the score after each point.
    *
-   * @param input A string like "ABABAA", where 'A' and 'B' represent the players scoring.
+   * @param game    The TennisGame instance to update.
+   * @param input   A string like "ABABAA", where 'A' and 'B' represent the players scoring.
+   * @param verbose If true, prints the score after each point; otherwise, runs silently.
    */
-  public static void playGame(String input) {
-    TennisGame game = new TennisGame();
+  public static void playGame(TennisGame game, String input, boolean verbose) {
     for (char c : input.toCharArray()) {
       game.pointWonBy(c);
-      System.out.println(game.getScore());
+      if (verbose) {
+        System.out.println(game.getScore());
+      }
     }
   }
 
@@ -90,7 +95,7 @@ public class TennisGame {
    */
   private boolean hasWinner() {
     if (playerAScore >= 4 || playerBScore >= 4) {
-      return (playerAScore - playerBScore) >= 2;
+      return Math.abs(playerAScore - playerBScore) >= 2;
     }
     return false;
   }
