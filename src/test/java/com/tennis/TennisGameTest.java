@@ -42,4 +42,18 @@ public class TennisGameTest {
     game.pointWonBy('A');
     assertEquals("Player A wins the game", game.getScore());
   }
+
+  @Test
+  void score_is_deuce() {
+    TennisGame game = new TennisGame();
+    game.pointWonBy('A');
+    game.pointWonBy('A');
+    game.pointWonBy('A');
+
+    game.pointWonBy('B');
+    game.pointWonBy('B');
+    game.pointWonBy('B');
+
+    assertEquals("Deuce", game.getScore());
+  }
 }

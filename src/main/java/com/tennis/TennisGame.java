@@ -14,6 +14,10 @@ public class TennisGame {
   public String getScore() {
     if (gameEnded) return winner + " wins the game";
 
+    if (playerAScore >= 3 && playerBScore >= 3 && playerAScore == playerBScore) {
+      return "Deuce";
+    }
+
     return "Player A : " + SCORE_TABLE[playerAScore] + " / Player B : " + SCORE_TABLE[playerBScore];
   }
 
