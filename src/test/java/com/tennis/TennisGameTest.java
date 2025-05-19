@@ -106,4 +106,17 @@ public class TennisGameTest {
 
     assertEquals("Player A wins the game", game.getScore());
   }
+
+  @Test
+  void complete_sequence_ABABAA() {
+    TennisGame game = new TennisGame();
+    String input = "ABABAA";
+
+    for (char c : input.toCharArray()) {
+      game.pointWonBy(c);
+      System.out.println(game.getScore());
+    }
+
+    assertEquals("Player A wins the game", game.getScore());
+  }
 }
