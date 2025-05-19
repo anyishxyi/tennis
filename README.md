@@ -15,10 +15,10 @@ This project implements a simple tennis score calculator in Java, following the 
 ### Running with input as a command line argument
 
 ```bash
-mvn compile exec:java -Dexec.args="ABABAA"
+mvn compile -q exec:java -Dexec.args="ABABAA"
 ```
 
 ### Running with user input
 ```bash
-mvn compile exec:java
+mvn compile -q exec:java
 ```
