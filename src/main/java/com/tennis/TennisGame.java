@@ -59,7 +59,7 @@ public class TennisGame {
 
     if (playerAScore >= 3 && playerBScore >= 3) {
       if (playerAScore == playerBScore) return "Deuce";
-      else if ((playerAScore - playerBScore) == 1) {
+      else if (Math.abs(playerAScore - playerBScore) == 1) {
         return "Advantage " + ((playerAScore > playerBScore) ? "Player A" : "Player B");
       }
     }
